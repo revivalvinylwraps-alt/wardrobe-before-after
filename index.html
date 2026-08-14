@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Revival Vinyl Wraps - Before & After</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  font-family: Arial, sans-serif;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.slider img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.after {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  width: 50%;
+}
+
+.after img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  max-width: 900px;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+}
+
+.divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background: white;
+  transform: translateX(-50%);
+  pointer-events: none;
+  box-shadow: 0 0 5px rgba(0,0,0,.4);
+}
+
+.handle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height:100px;
+  border-radius: 50%;
+  background-image: url('revival_slider_logo.png');
+  background-size: cover;
+  background-position: center;
+  border: 3px solid white;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  pointer-events: none;
+  box-shadow: 0 2px 10px rgba(0,0,0,.35);
+}
+
+.label {
+  position: absolute;
+  top: 18px;
+  padding: 9px 15px;
+  background: rgba(0,0,0,.65);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.before-label {
+  left: 18px;
+}
+
+.after-label {
+  right: 18px;
+}
+
+input[type="range"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+}
+</style>
+</head>
+
+<body>
+
+<div class="slider" id="slider">
+
+  <img src="IMG_3186.jpeg" alt="Kitchen before vinyl wrapping">
+
+  <div class="after" id="after">
+    <img src="IMG_3174.jpeg" alt="Kitchen after vinyl wrapping">
+  </div>
+
+  <div class="label before-label">BEFORE</div>
+  <div class="label after-label">AFTER</div>
+
+  <div class="divider" id="divider"></div>
+
+  <div class="handle" id="handle"></div>
+
+  <input
+    type="range"
+    min="0"
+    max="100"
+    value="50"
+    id="range"
+    aria-label="Before and after image comparison"
+  >
+
+</div>
+
+<script>
+const range = document.getElementById("range");
+const after = document.getElementById("after");
+const divider = document.getElementById("divider");
+const handle = document.getElementById("handle");
+
+function moveSlider(value) {
+  after.style.width = value + "%";
+  divider.style.left = value + "%";
+  handle.style.left = value + "%";
+}
+
+range.addEventListener("input", function () {
+  moveSlider(this.value);
+});
+
+moveSlider(50);
+</script>
+
+</body>
+</html>
